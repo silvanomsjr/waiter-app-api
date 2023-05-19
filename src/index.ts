@@ -4,13 +4,16 @@ import { routes} from './routes';
 import mongoose from 'mongoose';
 
 const app = express();
-mongoose.connect('mongodb://localhost:27017')
+const port = 3001;
+const mongodbPort = 27017;
+
+mongoose.connect(`mongodb://localhost:${mongodbPort}`)
   .then(() => {
     app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
     app.use(express.json());
     app.use(routes);
-    app.listen(3001, () => {
-      console.log('Server is running at: http://localhost:3001');
+    app.listen(port, () => {
+      console.log('Server is running at: http://localhost:'+port);
     });
   })
   .catch(() => console.log('Erro para rodar o MongoDB'));
