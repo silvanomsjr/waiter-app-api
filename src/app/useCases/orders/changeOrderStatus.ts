@@ -9,9 +9,13 @@ export async function changeOrderStatus(req: Request, res: Response){
     return res.status(400).json({ error: 'Status is required to change.' });
   }
 
+  if(!['WAITING', 'IN_PRODUCTION', 'DONE'].includes(status)){
+    return res.status(400).json({ error: 'Status should be one of these: WAITING, IN_PRODUCTION, DONE.' });
+  }
+
   try{
-    const updated = await Order.findByIdAndUpdate(orderId, { status: status });
-    res.json(updated);
+    await Order.findByIdAndUpdate(orderId, { status: status });
+    res.sendStatus(204);
   }
   catch(error){
     return res.status(400).json(error);

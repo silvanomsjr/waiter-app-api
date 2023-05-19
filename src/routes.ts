@@ -11,6 +11,7 @@ import { getProductByCategory } from './app/useCases/products/getProductByCatego
 import { listOrders } from './app/useCases/orders/listOrders';
 import { createOrder } from './app/useCases/orders/createOrder';
 import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
+import { cancelOrder } from './app/useCases/orders/cancelOrder';
 
 export const routes = Router();
 
@@ -46,11 +47,6 @@ routes.post('/products', upload.single('image'), createProduct);
 routes.get('/products/:categoryId', getProductByCategory);
 
 
-
-
-
-
-
 // Listar orders
 
 routes.get('/orders', listOrders);
@@ -65,6 +61,4 @@ routes.patch('/orders/:orderId', changeOrderStatus);
 
 // Deletar ou cancelar order
 
-routes.delete('/orders/:orderId', (req, res) => {
-  res.send('/orders/:orderId');
-});
+routes.delete('/orders/:orderId', cancelOrder);
