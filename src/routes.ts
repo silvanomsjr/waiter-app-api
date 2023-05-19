@@ -10,6 +10,7 @@ import { listProducts } from './app/useCases/products/listProducts';
 import { getProductByCategory } from './app/useCases/products/getProductByCategory';
 import { listOrders } from './app/useCases/orders/listOrders';
 import { createOrder } from './app/useCases/orders/createOrder';
+import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
 
 export const routes = Router();
 
@@ -60,9 +61,7 @@ routes.post('/orders', createOrder);
 
 // Alterar order status
 
-routes.patch('/orders/:orderId', (req, res) => {
-  res.send('/orders/:orderId');
-});
+routes.patch('/orders/:orderId', changeOrderStatus);
 
 // Deletar ou cancelar order
 
